@@ -86,5 +86,9 @@ namespace LinkedList
         {
             return Length() - _data.LastIndexOf(data) - 1;
         }
+        public void Clear()
+        {
+            _data.Clear();
+        }
     }
 }

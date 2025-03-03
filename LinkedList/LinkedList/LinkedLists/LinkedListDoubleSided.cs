@@ -223,4 +223,17 @@ public class LinkedListDoubleSided
         }
         return -1;
     }
+
+    public void Clear()
+    {
+        Node? current = _head;
+        while (current != null)
+        {
+            Node? next = current.Next;
+            current.Next = null;
+            current.Prev = null;
+            current = next;
+        }
+        _head = null;
+    }
 }
