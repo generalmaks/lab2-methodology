@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/general_maks/Code/csharp/Lab2/LinkedList/LinkedList/LinkedList.csproj",
+      "projectUniqueName": "/home/general_maks/Code/csharp/Lab2/lab2-methodology/LinkedList/LinkedList/LinkedList.csproj",
       "projectName": "LinkedList",
-      "projectPath": "/home/general_maks/Code/csharp/Lab2/LinkedList/LinkedList/LinkedList.csproj",
+      "projectPath": "/home/general_maks/Code/csharp/Lab2/lab2-methodology/LinkedList/LinkedList/LinkedList.csproj",
       "packagesPath": "/home/general_maks/.nuget/packages/",
-      "outputPath": "/home/general_maks/Code/csharp/Lab2/LinkedList/LinkedList/obj/",
+      "outputPath": "/home/general_maks/Code/csharp/Lab2/lab2-methodology/LinkedList/LinkedList/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/general_maks/.nuget/NuGet/NuGet.Config"
