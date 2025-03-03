@@ -9,9 +9,7 @@ public class LinkedListDoubleSided
         _head = head;
     }
 
-    public LinkedListDoubleSided()
-    {
-    }
+    public LinkedListDoubleSided(){}
 
     public void Add(char data)
     {
@@ -30,6 +28,7 @@ public class LinkedListDoubleSided
             }
 
             current.Next = newNode;
+            newNode.Prev = current;
         }
     }
 
@@ -78,11 +77,15 @@ public class LinkedListDoubleSided
         if (pos < 0 || pos > Length())
             throw new IndexOutOfRangeException("Position is out of range");
 
-        Node? newNode = new Node(data);
+        Node newNode = new Node(data);
 
         if (pos == 0)
         {
             newNode.Next = _head;
+            if (_head != null)
+            {
+                _head.Prev = newNode;
+            }
             _head = newNode;
             return;
         }
@@ -96,7 +99,15 @@ public class LinkedListDoubleSided
             current = current.Next;
         }
 
+        if (current == null)
+            throw new Exception("Invalid position");
+
         newNode.Next = current.Next;
+        newNode.Prev = current;
+        if (current.Next != null)
+        {
+            current.Next.Prev = newNode;
+        }
         current.Next = newNode;
     }
 
@@ -164,6 +175,7 @@ public class LinkedListDoubleSided
         {
             Node? next = current.Next;
             current.Next = previous;
+            current.Prev = next;
             previous = current;
             current = next;
         }
@@ -185,6 +197,30 @@ public class LinkedListDoubleSided
             index++;
         }
 
+        return -1;
+    }
+
+    public Node FindLast()
+    {
+        Node? current = _head;
+        while (current != null && current.Next != null)
+        {
+            current = current.Next;
+        }
+        return current!;
+    }
+
+    public int FindFromEnd(char data)
+    {
+        Node? current = FindLast();
+        int index = 0;
+        while (current != null)
+        {
+            if (current.Data == data)
+                return index;
+            current = current.Prev;
+            index++;
+        }
         return -1;
     }
 }

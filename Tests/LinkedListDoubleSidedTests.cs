@@ -254,4 +254,19 @@ public class LinkedListDoubleSidedTests
         // Assert
         Assert.Equal(-1, index);
     }
+
+    [Fact]
+    public void FindFromEnd_ElementExists_ReturnsIndex()
+    {
+        // Arrange
+        var list = new LinkedListDoubleSided(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var index = list.FindFromEnd('D');
+        // Assert
+        Assert.Equal(1, index);
+    }
 }
