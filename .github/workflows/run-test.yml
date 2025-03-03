@@ -1,5 +1,5 @@
 name: Run Tests
-
+# Comment
 on:
   push:
     branches:
@@ -7,11 +7,9 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,10 +20,10 @@ jobs:
           dotnet-version: '9.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore ./src/LinkedList
+        run: dotnet restore
 
       - name: Build project
-        run: dotnet build --no-restore ./src/LinkedList
+        run: dotnet build --no-restore
 
       - name: Run tests
-        run: dotnet test --no-build --verbosity normal ./src/Tests
+        run: dotnet test --no-build --verbosity normal
