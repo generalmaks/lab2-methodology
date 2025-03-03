@@ -65,6 +65,36 @@ public class LinkedListTests
     }
 
     [Fact]
+    public void AddToPos_PositionIsCorrect()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        // Act
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        list.AddToPos(3, 'N');
+        // Assert
+        Assert.Equal("ABCNDE", list.GetListStringSimple());
+    }
+
+    [Fact]
+    public void AddToPos_PositionAtHead_IsCorrect()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        // Act
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        list.AddToPos(0, 'N');
+        // Assert
+        Assert.Equal("NABCDE", list.GetListStringSimple());
+    }
+
+    [Fact]
     public void PrintList_DoesNotThrow()
     {
         // Arrange
@@ -75,7 +105,7 @@ public class LinkedListTests
         list.Add('S');
 
         // Assert
-        var exception = Record.Exception(() => list.PrintList());
+        var exception = Record.Exception(() => Console.WriteLine(list.GetListString()));
         Assert.Null(exception);
     }
 }
