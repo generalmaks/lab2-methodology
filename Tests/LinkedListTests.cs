@@ -1,4 +1,4 @@
-﻿using lab2;
+﻿using LinkedList;
 
 namespace Tests;
 
@@ -8,7 +8,7 @@ public class LinkedListTests
     public void CreateList_NotNull()
     {
         var node = new Node('A');
-        var list = new LinkedList(node);
+        var list = new LinkedList.LinkedList(node);
 
         // Act & Assert
         Assert.NotNull(list);
@@ -18,7 +18,7 @@ public class LinkedListTests
     public void Add_SingleChar_LengthIncreases()
     {
         // Arrange
-        var list = new LinkedList(new Node('Z'));
+        var list = new LinkedList.LinkedList(new Node('Z'));
 
         // Act
         list.Add('X');
@@ -31,7 +31,7 @@ public class LinkedListTests
     public void Add_MultipleChars_LengthMatches()
     {
         // Arrange
-        var list = new LinkedList(new Node('Z'));
+        var list = new LinkedList.LinkedList(new Node('Z'));
 
         // Act
         list.Add('i');
@@ -46,7 +46,7 @@ public class LinkedListTests
     public void Length_SingleNode_ReturnsOne()
     {
         // Arrange
-        var list = new LinkedList(new Node('B'));
+        var list = new LinkedList.LinkedList(new Node('B'));
 
         // Act
         int length = list.Length();
@@ -56,10 +56,19 @@ public class LinkedListTests
     }
 
     [Fact]
+    public void Length_EmptyList_ReturnsZero()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList();
+        // Assert
+        Assert.Equal(0, list.Length());
+    }
+
+    [Fact]
     public void PrintList_DoesNotThrow()
     {
         // Arrange
-        var list = new LinkedList(new Node('T'));
+        var list = new LinkedList.LinkedList(new Node('T'));
 
         // Act
         list.Add('E');
