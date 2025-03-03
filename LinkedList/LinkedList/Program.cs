@@ -76,7 +76,7 @@ public class LinkedList
     public void AddToPos(int pos, char data)
     {
         if (pos < 0 || pos > Length())
-            throw new Exception("Position is out of range");
+            throw new IndexOutOfRangeException("Position is out of range");
         
         Node? newNode = new Node(data);
         
@@ -103,7 +103,7 @@ public class LinkedList
     public void DeleteElement(int pos)
     {
         if (pos < 0 || pos >= Length())
-            throw new Exception("Position is out of range");
+            throw new IndexOutOfRangeException("Position is out of range");
 
         if (_head == null)
             throw new Exception("List is empty");
@@ -125,6 +125,32 @@ public class LinkedList
         if (current.Next == null)
             throw new Exception("Invalid position");
         current.Next = current.Next.Next;
+    }
+
+    public char GetElement(int pos)
+    {
+        if (pos < 0 || pos >= Length())
+            throw new IndexOutOfRangeException("Position is out of range");
+        Node? current = _head;
+        for (int i = 0; i < pos; i++)
+        {
+            if (current == null)
+                throw new Exception("Invalid position");
+            current = current.Next;
+        }
+        return current!.Data;
+    }
+
+    public LinkedList Copy()
+    {
+        var newList = new LinkedList();
+        Node? current = _head;
+        while (current != null)
+        {
+            newList.Add(current.Data);
+            current = current.Next;
+        }
+        return newList;
     }
 }
 

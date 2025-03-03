@@ -110,6 +110,36 @@ public class LinkedListTests
     }
 
     [Fact]
+    public void GetElement_IsCorrect()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var element = list.GetElement(2);
+        // Assert
+        Assert.Equal('C', element);
+    }
+
+    [Fact]
+    public void GetElement_IndexOutOfBounds_Throws()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var exception = Record.Exception(() => list.GetElement(5));
+        // Assert
+        Assert.IsType<IndexOutOfRangeException>(exception);
+    }
+
+    [Fact]
     public void PrintList_DoesNotThrow()
     {
         // Arrange
@@ -122,5 +152,49 @@ public class LinkedListTests
         // Assert
         var exception = Record.Exception(() => Console.WriteLine(list.GetListString()));
         Assert.Null(exception);
+    }
+
+    [Fact]
+    public void Copy_CorrectCopy()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var copy = list.Copy();
+        // Assert
+        Assert.Equal(list.GetListStringSimple(), copy.GetListStringSimple());
+    }
+
+    [Fact]
+    public void Copy_EmptyList_CorrectCopy()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList();
+        // Act
+        var copy = list.Copy();
+        // Assert
+        Assert.Equal(list.GetListStringSimple(), copy.GetListStringSimple());
+    }
+    
+    [Fact]
+    public void Copy_ReturnsModifiedList()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        list.DeleteElement(0);
+        list.AddToPos(1, 'F');
+        
+        // Act
+        var copy = list.Copy();
+        // Assert
+        Assert.Equal(list.GetListStringSimple(), copy.GetListStringSimple());
     }
 }
