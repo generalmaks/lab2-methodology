@@ -283,4 +283,18 @@ public class LinkedListArrayBasedTests
         // Assert
         Assert.Equal(0, list.Length());
     }
+    [Fact]
+    public void AddList_CorrectAdd()
+    {
+        // Arrange
+        var list = new LinkedListArrayBased('A');
+        list.Add('B');
+        list.Add('C');
+        var list2 = new LinkedListArrayBased('D');
+        list2.Add('E');
+        // Act
+        list.AddList(list2);
+        // Assert
+        Assert.Equal("ABCDE", list.GetListStringSimple());
+    }
 }

@@ -90,5 +90,10 @@ namespace LinkedList
         {
             _data.Clear();
         }
+
+        public void AddList(LinkedListArrayBased list)
+        {
+            _data.AddRange(list._data);
+        }
     }
 }

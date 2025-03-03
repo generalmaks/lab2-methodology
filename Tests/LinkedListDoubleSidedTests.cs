@@ -283,4 +283,19 @@ public class LinkedListDoubleSidedTests
         // Assert
         Assert.Equal(0, list.Length());
     }
+
+    [Fact]
+    public void AddList_CorrectAdd()
+    {
+        // Arrange
+        var list = new LinkedListDoubleSided(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        var list2 = new LinkedListDoubleSided(new Node('D'));
+        list2.Add('E');
+        // Act
+        list.AddList(list2);
+        // Assert
+        Assert.Equal("ABCDE", list.GetListStringSimple());
+    }
 }

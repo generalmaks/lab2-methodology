@@ -236,4 +236,9 @@ public class LinkedListDoubleSided
         }
         _head = null;
     }
+
+    public void AddList(LinkedListDoubleSided list)
+    {
+        FindLast().Next = list._head;
+    }
 }
