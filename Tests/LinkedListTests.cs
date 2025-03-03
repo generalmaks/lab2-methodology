@@ -95,6 +95,21 @@ public class LinkedListTests
     }
 
     [Fact]
+    public void DeleteElement_IsCorrect()
+    {
+        // Arrange
+        var list = new LinkedList.LinkedList(new Node('A'));
+        // Act
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        list.DeleteElement(1);
+        // Assert
+        Assert.Equal("ACDE", list.GetListStringSimple());
+    }
+
+    [Fact]
     public void PrintList_DoesNotThrow()
     {
         // Arrange

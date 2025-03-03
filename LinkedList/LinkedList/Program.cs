@@ -99,6 +99,33 @@ public class LinkedList
         newNode.Next = current.Next;
         current.Next = newNode;
     }
+
+    public void DeleteElement(int pos)
+    {
+        if (pos < 0 || pos >= Length())
+            throw new Exception("Position is out of range");
+
+        if (_head == null)
+            throw new Exception("List is empty");
+
+        if (pos == 0)
+        {
+            _head = _head.Next;
+            return;
+        }
+
+        Node current = _head;
+        for (int i = 0; i < pos - 1; i++)
+        {
+            if (current == null || current.Next == null)
+                throw new Exception("Invalid position");
+            current = current.Next;
+        }
+
+        if (current.Next == null)
+            throw new Exception("Invalid position");
+        current.Next = current.Next.Next;
+    }
 }
 
 static class Program
