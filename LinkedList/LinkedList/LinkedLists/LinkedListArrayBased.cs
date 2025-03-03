@@ -77,5 +77,14 @@ namespace LinkedList
         {
             return _data.IndexOf(data);
         }
+
+        public char FindLast()
+        {
+            return _data.Last();
+        }
+        public int FindFromEnd(char data)
+        {
+            return Length() - _data.LastIndexOf(data) - 1;
+        }
     }
 }

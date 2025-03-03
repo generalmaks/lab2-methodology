@@ -253,4 +253,19 @@ public class LinkedListArrayBasedTests
         // Assert
         Assert.Equal(-1, index);
     }
+
+    [Fact]
+    public void FindFromEnd_ElementExists_ReturnsIndex()
+    {
+        // Arrange
+        var list = new LinkedListArrayBased('A');
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var index = list.FindFromEnd('C');
+        // Assert
+        Assert.Equal(2, index);
+    }
 }
