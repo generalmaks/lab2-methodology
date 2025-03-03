@@ -1,14 +1,15 @@
 ﻿using LinkedList;
+using LinkedListDoubleSided = LinkedList.LinkedListDoubleSided;
 
 namespace Tests;
 
-public class LinkedListTests
+public class LinkedListDoubleSidedTests
 {
     [Fact]
     public void CreateList_NotNull()
     {
         var node = new Node('A');
-        var list = new LinkedList.LinkedList(node);
+        var list = new LinkedListDoubleSided(node);
 
         // Act & Assert
         Assert.NotNull(list);
@@ -18,7 +19,7 @@ public class LinkedListTests
     public void Add_SingleChar_LengthIncreases()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('Z'));
+        var list = new LinkedListDoubleSided(new Node('Z'));
 
         // Act
         list.Add('X');
@@ -31,7 +32,7 @@ public class LinkedListTests
     public void Add_MultipleChars_LengthMatches()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('Z'));
+        var list = new LinkedListDoubleSided(new Node('Z'));
 
         // Act
         list.Add('i');
@@ -46,7 +47,7 @@ public class LinkedListTests
     public void Length_SingleNode_ReturnsOne()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('B'));
+        var list = new LinkedListDoubleSided(new Node('B'));
 
         // Act
         int length = list.Length();
@@ -59,7 +60,7 @@ public class LinkedListTests
     public void Length_EmptyList_ReturnsZero()
     {
         // Arrange
-        var list = new LinkedList.LinkedList();
+        var list = new LinkedListDoubleSided();
         // Assert
         Assert.Equal(0, list.Length());
     }
@@ -68,7 +69,7 @@ public class LinkedListTests
     public void AddToPos_PositionIsCorrect()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         // Act
         list.Add('B');
         list.Add('C');
@@ -83,7 +84,7 @@ public class LinkedListTests
     public void AddToPos_PositionAtHead_IsCorrect()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         // Act
         list.Add('B');
         list.Add('C');
@@ -98,7 +99,7 @@ public class LinkedListTests
     public void DeleteElement_IsCorrect()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         // Act
         list.Add('B');
         list.Add('C');
@@ -113,7 +114,7 @@ public class LinkedListTests
     public void GetElement_IsCorrect()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         list.Add('B');
         list.Add('C');
         list.Add('D');
@@ -128,7 +129,7 @@ public class LinkedListTests
     public void GetElement_IndexOutOfBounds_Throws()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         list.Add('B');
         list.Add('C');
         list.Add('D');
@@ -143,7 +144,7 @@ public class LinkedListTests
     public void PrintList_DoesNotThrow()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('T'));
+        var list = new LinkedListDoubleSided(new Node('T'));
 
         // Act
         list.Add('E');
@@ -158,7 +159,7 @@ public class LinkedListTests
     public void Copy_CorrectCopy()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         list.Add('B');
         list.Add('C');
         list.Add('D');
@@ -173,28 +174,84 @@ public class LinkedListTests
     public void Copy_EmptyList_CorrectCopy()
     {
         // Arrange
-        var list = new LinkedList.LinkedList();
+        var list = new LinkedListDoubleSided();
         // Act
         var copy = list.Copy();
         // Assert
         Assert.Equal(list.GetListStringSimple(), copy.GetListStringSimple());
     }
-    
+
     [Fact]
     public void Copy_ReturnsModifiedList()
     {
         // Arrange
-        var list = new LinkedList.LinkedList(new Node('A'));
+        var list = new LinkedListDoubleSided(new Node('A'));
         list.Add('B');
         list.Add('C');
         list.Add('D');
         list.Add('E');
         list.DeleteElement(0);
         list.AddToPos(1, 'F');
-        
+
         // Act
         var copy = list.Copy();
         // Assert
         Assert.Equal(list.GetListStringSimple(), copy.GetListStringSimple());
+    }
+
+    [Fact]
+    public void Reverse_CorrectReverse()
+    {
+        // Arrange
+        var list = new LinkedListDoubleSided(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        list.Reverse();
+        // Assert
+        Assert.Equal("EDCBA", list.GetListStringSimple());
+    }
+    
+    [Fact]
+    public void Reverse_EmptyList_CorrectReverse()
+    {
+        // Arrange
+        var list = new LinkedListDoubleSided();
+        // Act
+        list.Reverse();
+        // Assert
+        Assert.Equal("", list.GetListStringSimple());
+    }
+
+    [Fact]
+    public void Find_ElementExists_ReturnsIndex()
+    {
+        // Arrange
+        var list = new LinkedListDoubleSided(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var index = list.Find('C');
+        // Assert
+        Assert.Equal(2, index);
+    }
+
+    [Fact]
+    public void Find_ElementDoesNotExist_ReturnsNegativeOne()
+    {
+        // Arrange
+        var list = new LinkedListDoubleSided(new Node('A'));
+        list.Add('B');
+        list.Add('C');
+        list.Add('D');
+        list.Add('E');
+        // Act
+        var index = list.Find('F');
+        // Assert
+        Assert.Equal(-1, index);
     }
 }
